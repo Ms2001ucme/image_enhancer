@@ -35,7 +35,7 @@ image_enhancer/
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Ms2001ucme/image_enhancer.git
 cd image_enhancer
 
 
