@@ -1,4 +1,50 @@
-JPEG Enhancement PipelineAn automated, Python-based image processing tool designed to boost brightness, contrast, and clarity while maintaining natural skin tones and reducing noise.## OverviewThis script provides a non-destructive-feeling enhancement by operating primarily in the LAB Color Space. By isolating the Lightness ($L$) channel from the color components ($A$ and $B$), we can adjust exposure and contrast without causing the color shifting or "neon" oversaturation common in standard RGB adjustments.Getty ImagesKey FeaturesDenoising: Uses the Fast Non-Local Means (FNLM) algorithm to remove grain while preserving high-frequency details.Adaptive Contrast: Implements CLAHE (Contrast Limited Adaptive Histogram Equalization) to prevent blown-out highlights.Skin Tone Preservation: Color corrections are applied subtly to ensure organic textures remain natural.Batch Processing: Handles single files or entire directories with automated output routing.## InstallationEnsure you have Python 3.7+ installed. The pipeline relies on OpenCV for heavy computation and Pillow for final image encoding.Bashpip install opencv-python numpy Pillow
-## UsageBasic CommandTo process a folder of JPEGs with default settings:Bashpython enhance.py --input ./input_folder --output ./output_folder
-Advanced TuningYou can override the default strength parameters to suit specific lighting conditions:Bashpython enhance.py --input raw.jpg --output ./out --brightness 1.2 --contrast 1.3 --noise 5
-## Parameter ReferenceParameterTypeDefaultRangeDescription--inputPathN/AStringPath to a .jpg file or a directory of images.--outputPathN/AStringDirectory where processed images will be saved.--brightnessFloat1.10.5 - 2.0Multiplier for luminance. 1.0 is neutral.--contrastFloat1.10.5 - 2.0Multiplier for image punch.--noiseInt31 - 10Strength of FNLM denoising. 3-5 is ideal for most JPEGs.## Technical NotesDenoising: We utilize cv2.fastNlMeansDenoisingColored. Unlike a Gaussian blur, this searches for similar patches in the image to average out noise, which is significantly better at keeping hair and skin texture intact.Color Space: The conversion sequence is BGR -> LAB -> BGR -> RGB. This ensures that the ImageEnhance modules in Pillow work on a balanced, denoised base.Memory: The script processes images sequentially to maintain a low memory footprint, making it suitable for lower-spec environments or large batches.
+# 🖼️ Image Enhancer (Python)
+
+A simple Python-based image enhancement tool that improves image quality using basic image processing techniques.  
+This project is useful for learning image manipulation and automation with Python.
+
+---
+
+## 📌 Features
+- Enhances image clarity and quality
+- Supports JPEG images
+- Automatically saves enhanced images to an output folder
+- Easy to use and modify
+
+---
+
+## 🛠️ Technologies Used
+- Python 3
+- OpenCV
+- NumPy
+
+---
+
+## 📂 Project Structure
+image_enhancer/
+│
+├── image_enhancer.py # Main script
+├── test.jpeg # Sample input image
+├── output_folder/ # Generated enhanced images 
+└── README.md
+
+
+---
+
+## 🚀 How to Run the Project
+
+### 1️⃣ Clone the Repository
+```bash
+git clone <your-repo-url>
+cd image_enhancer
+
+
+---
+
+2️⃣ Install Dependencies
+pip install opencv-python numpy
+
+---
+
+3️⃣ Run the Script
+python image_enhancer.py
